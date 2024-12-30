@@ -17,6 +17,17 @@ class FoodDetailsScreen extends ConsumerWidget {
     final favorites = ref.watch(favoritesProvider);
     final isFavorite = ref.read(favoritesProvider.notifier).isFavorite(food);
 
+
+     final double miniPrice = (food['miniPrice'] ?? 0).toDouble();
+    // double miniPrice = 0.0;
+    // if (food['miniPrice'] is int) {
+    //   miniPrice = (food['miniPrice'] as int).toDouble();
+    // } else if (food['miniPrice'] is double) {
+    //   miniPrice = food['miniPrice'] as double;
+    // } else {
+    //   miniPrice = 0.0;
+    // }
+    
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -27,7 +38,7 @@ class FoodDetailsScreen extends ConsumerWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(food['name']),
+            Flexible(child: Text(food['name'])),
           ],
         ),
         actions: [
@@ -75,7 +86,7 @@ class FoodDetailsScreen extends ConsumerWidget {
                       style: bigText2,
                     ),
                     Text(
-                      '#${food['price'] ?? 0.0}',
+                      '#${miniPrice.toStringAsFixed(2)}',
                       style: detailsPrice,
                     ),
                   ],
@@ -105,7 +116,7 @@ class FoodDetailsScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 FoodOptions(
-                                  miniPrice: food['miniPrice'] ?? 0.0,
+                                  miniPrice: (food['miniPrice'] ?? 0.0).toDouble(),
                                   fullPrice: food['foodPrice'] ?? 0.0,
                                   onOptionSelected: (String option, int quantity) {
                 cartNotifier.addToCart(
@@ -128,17 +139,22 @@ class FoodDetailsScreen extends ConsumerWidget {
             const SizedBox(
               height: 50,
             ),
-            RoundedButton(text: ("Add to Cart"), onpress: () {
-               cartNotifier.addToCart(
-                    food: food,
-                    quantity: 2, 
-                    selectedOption: 'Mini', 
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Added to cart successfully!'),
-                    ),
-                  );
+            RoundedButton(text: ("Add to Cart"), 
+            onpress: () {
+              if((food['quantity'] ?? 0) > 0){
+                 cartNotifier.addToCart(
+                      food: food,
+                      quantity: 2,
+                      selectedOption: 'Mini',
+                    );
+                   WidgetsBinding.instance.addPostFrameCallback((_) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Added to cart successfully!'),
+                        ),
+                      );
+                    });
+              }
             })
           ],
         ),

@@ -18,6 +18,15 @@ class CartNotifier extends StateNotifier<List<CartItem>> {
     );
     state = [...state, item];
   }
+
+  void removeFromCart(CartItem item) {
+    state = state.where((cartItem) => cartItem != item).toList();
+  }
+
+  void clearCart() {
+    state = [];
+  }
+  
 }
 
  

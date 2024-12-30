@@ -70,11 +70,19 @@ class _HomeScreenState extends State<HomeScreen>
                     indicatorColor: primaryColor,
                     labelColor: primaryColor,
                     unselectedLabelColor: Colors.grey,
-                    tabs: const [
-                      Tab(text: 'Foods'),
-                      Tab(text: 'Drinks'),
-                      Tab(text: 'Snacks'),
-                      Tab(text: 'Sauces'),
+                    tabs: [
+                      Tab(
+                        child: Image.asset('assets/foodicon.png'),
+                        ),
+                      Tab(
+                        child: Image.asset('assets/drinkicon.png'),
+                        ),
+                      Tab(
+                        child: Image.asset('assets/foodicon.png'),
+                      ),
+                      Tab(
+                        child: Image.asset('assets/snacksicon.png'),
+                      ),
                     ],
                   ),
                 ),
@@ -101,34 +109,40 @@ class _HomeScreenState extends State<HomeScreen>
                       const FoodList(
                         foods: [
                           {
-                            'name': 'Veggies',
-                            'price': 1300,
-                            'image': 'assets/food1.jpeg'
-                          },
-                          {
-                            'name': 'Mango Smoothie',
+                            'name': 'Jollof Rice with Chicken ',
                             'price': 1500,
-                            'image': 'assets/food2.jpeg'
+                            'image': 'assets/food1.jpeg',
+                            'miniPrice': 1500,
                           },
                           {
-                            'name': 'Berry Shake',
+                            'name': 'J-Pasta ',
+                            'price': 1800,
+                            'image': 'assets/food2.jpeg',
+                            'miniPrice': 1800,
+                          },
+                          {
+                            'name': 'Italian Toast',
                             'price': 1700,
-                            'image': 'assets/food3.jpeg'
+                            'image': 'assets/food3.jpeg',
+                            'miniPrice': 1700,
                           },
                           {
-                            'name': 'Chocolate Shake',
+                            'name': 'Fried Rice with Chicken',
                             'price': 1400,
-                            'image': 'assets/food4.jpeg'
+                            'image': 'assets/food4.jpeg',
+                            'miniPrice': 1400,
+                          },
+                          {
+                            'name': 'Ghana Jollof with Chicken',
+                            'price': 1200,
+                            'image': 'assets/food5.jpeg',
+                            'miniPrice': 1200,
                           },
                           {
                             'name': 'Alc',
                             'price': 1200,
-                            'image': 'assets/food5.jpeg'
-                          },
-                          {
-                            'name': 'Alc',
-                            'price': 1200,
-                            'image': 'assets/food1.png'
+                            'image': 'assets/food1.png',
+                            'miniPrice': 1200,
                           },
                         ],
                       ), // Foods

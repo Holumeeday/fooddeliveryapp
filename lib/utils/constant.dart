@@ -10,7 +10,7 @@ const bigText = TextStyle(
 
 const bigText2 = TextStyle(
   color: Colors.black,
-  fontSize: 25,
+  fontSize: 19,
   fontWeight: FontWeight.w600,
 );
 const mediumText = TextStyle(
