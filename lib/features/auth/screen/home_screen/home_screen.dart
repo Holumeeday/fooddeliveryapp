@@ -1,3 +1,4 @@
+import 'package:asap/features/auth/screen/cart/cart_screen.dart';
 import 'package:asap/features/auth/screen/home_screen/widgets/drink_list.dart';
 import 'package:asap/features/auth/screen/home_screen/widgets/food_list.dart';
 import 'package:asap/utils/constant.dart';
@@ -24,19 +25,24 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         backgroundColor: Colors.white70,
-         appBar: AppBar(
+        appBar: AppBar(
           leading: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Icon(Icons.menu),
           ),
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Icon(
-                Icons.shopping_cart,
-                color: Colors.grey,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const CartScreen()));
+                },
+                icon: const Icon(
+                  Icons.shopping_cart,
+                  color: Colors.grey,
+                ),
               ),
             )
           ],
@@ -92,8 +98,8 @@ class _HomeScreenState extends State<HomeScreen>
                   child: TabBarView(
                     controller: _tabController,
                     children: [
-                    const  FoodList(
-                       foods: [
+                      const FoodList(
+                        foods: [
                           {
                             'name': 'Veggies',
                             'price': 1300,
@@ -125,10 +131,10 @@ class _HomeScreenState extends State<HomeScreen>
                             'image': 'assets/food1.png'
                           },
                         ],
-                    ), // Foods
+                      ), // Foods
                       const DrinkList(
-                         drinks: [
-                           {
+                        drinks: [
+                          {
                             'name': 'Soda Drink',
                             'price': 1300,
                             'image': 'assets/drink1.jpg'
@@ -154,7 +160,6 @@ class _HomeScreenState extends State<HomeScreen>
                             'image': 'assets/drink5.jpg'
                           },
                         ],
-                        
                       ), // Drinks
                       _SnackList(), // Snacks
                       _SauceList(), // Sauces
@@ -173,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen>
 //     scrollDirection: Axis.horizontal,
 //     itemCount: 5,
 //    itemBuilder: (context, index) {
-   
+
 //     return Padding(
 //           padding: const EdgeInsets.only(right: 15, left: 15),
 //           child: Row(
@@ -248,8 +253,6 @@ class _HomeScreenState extends State<HomeScreen>
 //   });
 
 // }
-
-
 
 Widget _SnackList() {
   return ListView(
