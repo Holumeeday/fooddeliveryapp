@@ -14,6 +14,11 @@ final getUserDataProvider = StreamProvider.family((ref, String userId) {
   return user;
 });
 
+final authStateChangeProvider = StreamProvider((ref) {
+  final authController = ref.watch(authControllerProvider.notifier);
+  return authController.authStateChange;
+});
+
 final userProvider = StateProvider<UserModel?>((ref) => null);
 
 class AuthController extends AsyncNotifier<AsyncValue<void>> {
@@ -26,6 +31,8 @@ class AuthController extends AsyncNotifier<AsyncValue<void>> {
 
     return const AsyncValue.data(null);
   }
+
+  Stream<User?> get authStateChange => _authRepository.authStateChange;
 
   void signInWithEmailAndPassword(
       String email, String password, BuildContext context) async {
@@ -51,7 +58,7 @@ class AuthController extends AsyncNotifier<AsyncValue<void>> {
             ref.read(userProvider.notifier).update((state) => userModel));
   }
 
-  Future<void> SignOut() async {
+  Future<void> signOut() async {
     _authRepository.signOut();
   }
 

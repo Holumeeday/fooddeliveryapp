@@ -1,11 +1,14 @@
 import 'package:asap/features/auth/controller/auth_controller.dart';
 import 'package:asap/features/auth/model/user_model.dart';
+import 'package:asap/router.dart';
+import 'package:asap/utils/widget/error_text.dart';
+import 'package:asap/utils/widget/loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/foundation.dart';
-import 'features/auth/screen/onboarding_screen.dart';
+import 'package:routemaster/routemaster.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +54,22 @@ class _MyAppState extends ConsumerState<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ref.watch(provider);
+    return ref.watch(authStateChangeProvider).when(
+      data: 
+      (data)=> MaterialApp.router(
+        // color: AppColor.primaryColor
+        debugShowCheckedModeBanner: false,
+        routerDelegate: RoutemasterDelegate(routesBuilder: (context){ 
+          if(data!= null){
+            getData(ref, data);
+            return loggedInRoute;
+          }
+          return loggedOutRoute;
+        }),
+        routeInformationParser: const RoutemasterParser(),
+
+      ), 
+      error: (error, _)=> ErrorText(error: error.toString()), 
+      loading: ()=> const Loader());
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xFFFF5335);
+const  basicColor= Color(0xffeeeeee);
 
 const bigText = TextStyle(
   color: Colors.black,

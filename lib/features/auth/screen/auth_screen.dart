@@ -1,10 +1,8 @@
 import 'package:asap/features/auth/controller/auth_controller.dart';
-import 'package:asap/features/auth/screen/main_screen.dart';
 import 'package:asap/utils/constant.dart';
 import 'package:asap/utils/widget/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get_state_manager/src/simple/list_notifier.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({super.key});
@@ -195,7 +193,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                             ),
                             const SizedBox(height: 1),
                             TextField(
-                              controller: _email,
+                              controller: _username,
                               decoration: const InputDecoration(
                                 hintText: "John doe",
                                 border: UnderlineInputBorder(),

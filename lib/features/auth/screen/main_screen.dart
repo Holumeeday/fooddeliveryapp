@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'favorite_screen/favorite_screen.dart';
 import 'home_screen/home_screen.dart';
 import 'profile_screen/profile_screen.dart';
-import 'timer/Timer_screen.dart';
+import 'settings/settings_screen.dart';
 
 
 class MainPage extends ConsumerWidget {
@@ -22,7 +22,7 @@ class MainPage extends ConsumerWidget {
       const HomeScreen(),
       const FavoritesScreen(),
       const ProfileScreen(),
-      const TimerScreen() 
+      const SettingsScreen() 
     ];
 
     return Scaffold(
@@ -52,7 +52,7 @@ class MainPage extends ConsumerWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.alarm,
+              Icons.settings,
               color: primaryColor,
             ),
             label: ''
