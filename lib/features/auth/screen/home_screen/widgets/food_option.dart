@@ -42,7 +42,7 @@ class _FoodOptionsState extends State<FoodOptions> {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: Colors.red.withOpacity(0.1),
+                color: primaryColor.withOpacity(0.1),
               ),
               child: Row(
                 children: [
@@ -58,7 +58,7 @@ class _FoodOptionsState extends State<FoodOptions> {
                           const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
                         color: selectedOption == 'Mini'
-                            ? Colors.red
+                            ? primaryColor
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(16),
                       ),
@@ -67,7 +67,7 @@ class _FoodOptionsState extends State<FoodOptions> {
                         style: TextStyle(
                           color: selectedOption == 'Mini'
                               ? Colors.white
-                              : primaryColor,
+                              : Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -94,7 +94,7 @@ class _FoodOptionsState extends State<FoodOptions> {
                         style: TextStyle(
                           color: selectedOption == 'Full'
                               ? Colors.white
-                              : primaryColor,
+                              : Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -104,7 +104,7 @@ class _FoodOptionsState extends State<FoodOptions> {
               ),
             ),
         
-            SizedBox(width:10),
+           const SizedBox(width:10),
         
             // Quantity Counter
             Row(
@@ -174,7 +174,7 @@ class _FoodOptionsState extends State<FoodOptions> {
           'Price: #${price * quantity}',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            color: primaryColor,
+            color: Colors.black,
           ),
         ),
       ],

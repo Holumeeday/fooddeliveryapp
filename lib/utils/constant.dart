@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-const primaryColor = Color(0xFFFF5335);
-const  basicColor= Color(0xffeeeeee);
+const primaryColor = Color(0xFFCDFE0B);
 
 const bigText = TextStyle(
   color: Colors.black,
-  fontSize: 35,
+  fontSize: 20,
   fontWeight: FontWeight.bold,
 );
 
@@ -16,7 +15,7 @@ const bigText2 = TextStyle(
 );
 const mediumText = TextStyle(
   fontSize: 15,
-  fontWeight: FontWeight.w500,
+  fontWeight: FontWeight.w700,
   color: Colors.black,
 );
 
@@ -33,9 +32,9 @@ const mediumText3 = TextStyle(
 );
 
 const priceStyle = TextStyle(
-  fontSize: 16,
+  fontSize: 17,
   fontWeight: FontWeight.bold,
-  color: primaryColor,
+  color: Colors.black,
 );
 
 const detailsPrice = TextStyle(

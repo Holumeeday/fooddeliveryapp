@@ -68,16 +68,34 @@ class FoodList extends StatelessWidget {
                             right: 0,
                             child: Column(
                               children: [
+                                const SizedBox(height: 5),
                                 Text(
                                   food['name'],
                                   style: mediumText,
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(height: 8),
-                                Text(
-                                  '#${food['price']}',
-                                  style: priceStyle,
-                                  textAlign: TextAlign.center,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        '#${food['price']}',
+                                        style: mediumText,
+                                      ),
+                                      Center(
+                                        child: Container(
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                            color: primaryColor,
+                                            borderRadius: BorderRadius.circular(50)
+                                          ),
+                                          child: const Icon(Icons.add),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

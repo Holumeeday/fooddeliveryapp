@@ -30,30 +30,32 @@ class MainPage extends ConsumerWidget {
      
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        
         currentIndex: currentIndex,
         onTap: (index) {
           ref.read(pageProvider.notifier).setPage(index);
         },
+        selectedItemColor: Colors.black, 
+        unselectedItemColor: Colors.grey, 
+        type: BottomNavigationBarType.fixed, 
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: primaryColor,),
+            icon: Icon(Icons.home,),
             label: ''
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite, color: primaryColor,
+            icon: Icon(Icons.favorite_outline,
             ),
             label: ''
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person,
-              color: primaryColor,
             ),
            label: ''
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.settings,
-              color: primaryColor,
             ),
             label: ''
           ), 

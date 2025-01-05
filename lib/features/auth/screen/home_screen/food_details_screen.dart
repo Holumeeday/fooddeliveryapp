@@ -87,7 +87,7 @@ class FoodDetailsScreen extends ConsumerWidget {
                     ),
                     Text(
                       '#${miniPrice.toStringAsFixed(2)}',
-                      style: detailsPrice,
+                      style: priceStyle,
                     ),
                   ],
                 ),

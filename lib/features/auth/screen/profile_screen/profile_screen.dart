@@ -60,7 +60,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final userId = user!.uid.toString();
     final userData = ref.watch(getUserDataProvider(userId));
     return Scaffold(
-        backgroundColor: basicColor,
+        backgroundColor: Colors.white,
         body: userData.when(
             data: (data) {
               _username = TextEditingController(text: data.username);

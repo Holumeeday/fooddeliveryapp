@@ -21,7 +21,7 @@ class SettingsScreen extends ConsumerWidget {
     final userId = user!.uid.toString();
     final userData = ref.watch(getUserDataProvider(userId));
     return Scaffold(
-        backgroundColor: basicColor, 
+        backgroundColor: primaryColor, 
         body: userData.when(
             data: (data) {
               return SafeArea(
