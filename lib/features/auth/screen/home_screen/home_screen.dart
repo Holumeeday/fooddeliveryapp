@@ -2,12 +2,11 @@ import 'package:asap/features/auth/screen/cart/cart_screen.dart';
 import 'package:asap/features/auth/screen/home_screen/widgets/drink_list.dart';
 import 'package:asap/features/auth/screen/home_screen/widgets/food_list.dart';
 import 'package:asap/features/auth/screen/promotion/widgets/promotion_widget.dart';
+import 'package:asap/providers/cart_notifier.dart';
 import 'package:asap/utils/constant.dart';
-import 'package:asap/utils/widget/search_input.dart';
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../promotion/widgets/promotions_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen>
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: Colors.white,
           leading: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Icon(Icons.search),
@@ -38,17 +38,52 @@ class _HomeScreenState extends State<HomeScreen>
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const CartScreen()));
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final cartItems = ref.watch(cartProvider);
+                  final totalItems = cartItems.fold<int>(
+                      0, (sum, item) => sum + item.quantity);
+
+                  return Stack(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CartScreen()),
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.shopping_cart,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      if (totalItems > 0)
+                        Positioned(
+                          right: 4,
+                          top: 4,
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: const BoxDecoration(
+                              color: Colors.red,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Text(
+                              '$totalItems',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
                 },
-                icon: const Icon(
-                  Icons.shopping_cart,
-                  color: Colors.grey,
-                ),
               ),
-            )
+            ),
           ],
         ),
         body: Padding(
@@ -58,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                  SizedBox(
-                  height: 200, // Adjust based on your design
+                  height: 200, 
                   child: PromotionWidget(),
                 ),
                 
